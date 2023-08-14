@@ -132,6 +132,7 @@ const ShareView = ({ quicknote = false }) => {
   const [rawFiles, setRawFiles] = useState([]);
 
   const [kh, setKh] = useState(0);
+  const [compress, setCompress] = useState(true);
   globalThis["IS_SHARE_EXTENSION"] = true;
   const onKeyboardDidShow = (event) => {
     let height = Dimensions.get("window").height - event.endCoordinates.screenY;
@@ -290,7 +291,8 @@ const ShareView = ({ quicknote = false }) => {
     await NoteBundle.createNotes({
       files: rawFiles,
       note: _note,
-      notebooks: useShareStore.getState().selectedNotebooks
+      notebooks: useShareStore.getState().selectedNotebooks,
+      compress
     });
 
     try {
@@ -625,6 +627,40 @@ const ShareView = ({ quicknote = false }) => {
                   >
                     Tap to remove an attachment.
                   </Text>
+
+                  <TouchableOpacity
+                    activeOpacity={1}
+                    style={{
+                      flexDirection: "row",
+                      alignSelf: "center",
+                      alignItems: "center",
+                      width: "100%",
+                      marginTop: 6
+                    }}
+                    onPress={() => {
+                      setCompress(!compress);
+                    }}
+                  >
+                    <Icon
+                      size={20}
+                      name={
+                        compress ? "checkbox-marked" : "checkbox-blank-outline"
+                      }
+                      color={
+                        compress ? colors.primary.accent : colors.primary.icon
+                      }
+                    />
+
+                    <Text
+                      style={{
+                        flexShrink: 1,
+                        marginLeft: 3,
+                        fontSize: 12
+                      }}
+                    >
+                      Compress image (recommended)
+                    </Text>
+                  </TouchableOpacity>
                 </View>
               ) : null}
               <View

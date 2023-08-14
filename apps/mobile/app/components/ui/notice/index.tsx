@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 import React from "react";
-import { View } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { useThemeColors } from "@notesnook/theme";
 import { SIZE } from "../../../utils/size";
 import { IconButton } from "../icon-button";
@@ -28,13 +28,15 @@ export interface NoticeProps {
   text: string;
   size?: "small" | "large";
   selectable?: boolean;
+  style?: ViewStyle;
 }
 
 export const Notice = ({
   type = "alert",
   text,
   size = "large",
-  selectable
+  selectable,
+  style
 }: NoticeProps) => {
   const { colors } = useThemeColors();
   const isSmall = size === "small";
@@ -46,7 +48,8 @@ export const Notice = ({
         flexDirection: "row",
         backgroundColor: colors.secondary.background,
         borderRadius: isSmall ? 5 : 10,
-        alignItems: "flex-start"
+        alignItems: "flex-start",
+        ...style
       }}
     >
       <IconButton
