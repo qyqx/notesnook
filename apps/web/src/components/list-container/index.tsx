@@ -25,6 +25,7 @@ import {
   useStore as useSelectionStore,
   store as selectionStore
 } from "../../stores/selection-store";
+import { useStore as useNoteStore } from "../../stores/note-store";
 import GroupHeader from "../group-header";
 import { DEFAULT_ITEM_HEIGHT, ListProfiles } from "./list-profiles";
 import Announcements from "../announcements";
@@ -32,6 +33,7 @@ import { ListLoader } from "../loaders/list-loader";
 import ScrollContainer from "../scroll-container";
 import { useKeyboardListNavigation } from "../../hooks/use-keyboard-list-navigation";
 import { Context, Item } from "./types";
+import { db } from "../../common/db";
 
 export const CustomScrollbarsVirtualList = forwardRef<
   HTMLDivElement,
@@ -84,6 +86,8 @@ function ListContainer(props: ListContainerProps) {
   const toggleSelection = useSelectionStore(
     (store) => store.toggleSelectionMode
   );
+  const favorite = useNoteStore((store) => store.favorite);
+  const trashNote = useNoteStore((store) => store.delete);
 
   const listRef = useRef<VirtuosoHandle>(null);
   const listContainerRef = useRef(null);
@@ -130,7 +134,18 @@ function ListContainer(props: ListContainerProps) {
   const Component = ListProfiles[type];
 
   return (
-    <Flex variant="columnFill">
+    <Flex
+      variant="columnFill"
+      onDragOver={(e) => e.preventDefault()}
+      onDrop={async (e) => {
+        const noteId = e?.dataTransfer.getData("note-id");
+        if (groupingKey === "favorites") {
+          await favorite(noteId);
+        } else if (groupingKey === "trash") {
+          await trashNote(noteId);
+        }
+      }}
+    >
       {!props.items.length && props.placeholder ? (
         <>
           {header}

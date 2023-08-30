@@ -190,6 +190,10 @@ function NavigationMenu(props: NavigationMenuProps) {
                     return toggleNavigationContainer();
                   _navigate(item.path);
                 }}
+                onDragEnter={() => {
+                  if (item.title !== "Monographs" && item.title !== "Reminders")
+                    _navigate(item.path);
+                }}
               />
             ))}
             {colors.map((color, index) => (

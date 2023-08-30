@@ -39,10 +39,14 @@ type ListItemProps = {
   isCompact?: boolean;
   isDisabled?: boolean;
   isSimple?: boolean;
+  draggable?: boolean;
   item: Item;
 
   onKeyPress?: (e: React.KeyboardEvent<HTMLDivElement>) => void;
   onClick?: () => void;
+  onDragEnter?: (e?: React.DragEvent<HTMLDivElement>) => void;
+  onDrop?: (e?: React.DragEvent<HTMLDivElement>) => void;
+  onDragStart?: (e?: React.DragEvent<HTMLDivElement>) => void;
   title: string | JSX.Element;
   header?: JSX.Element;
   body?: JSX.Element | string;
@@ -62,7 +66,10 @@ function ListItem(props: ListItemProps) {
     isCompact,
     isDisabled,
     isSimple,
-    item
+    item,
+    onDragEnter,
+    onDrop,
+    onDragStart
   } = props;
 
   const listItemRef = useRef<HTMLDivElement>(null);
@@ -82,6 +89,16 @@ function ListItem(props: ListItemProps) {
       id={`id_${item.id}`}
       className={isSelected ? "selected" : ""}
       ref={listItemRef}
+      onDragEnter={(e) => {
+        if (onDragEnter) onDragEnter(e);
+      }}
+      onDrop={(e) => {
+        if (onDrop) onDrop(e);
+      }}
+      onDragOver={(e) => e.preventDefault()}
+      onDragStart={(e) => {
+        if (onDragStart) onDragStart(e);
+      }}
       onContextMenu={(e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -107,6 +124,7 @@ function ListItem(props: ListItemProps) {
           title
         });
       }}
+      draggable={props.draggable}
       pl={1}
       pr={2}
       py={1}

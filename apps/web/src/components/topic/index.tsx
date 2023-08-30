@@ -48,9 +48,31 @@ function Topic(props: TopicProps) {
       title={topic.title}
       footer={<Text variant="subBody">{getTotalNotes(topic)}</Text>}
       menuItems={menuItems}
+      onDragEnter={(e) => {
+        e?.currentTarget.focus();
+      }}
+      onDrop={async (e) => {
+        console.log("topic", topic);
+        const noteId = e?.dataTransfer.getData("note-id");
+        await db.notes?.addToNotebook(
+          { id: topic.notebookId as string, topic: topic.id },
+          noteId
+        );
+        navigate(`/notebooks/${topic.notebookId}/${topic.id}`);
+      }}
     />
   );
 }
+
+/**
+ * type NotebookReference = {
+  id: string;
+  topic?: string;
+  new: boolean;
+  op: "add" | "remove";
+};
+ * 
+ */
 
 export default React.memo(Topic, (prev, next) => {
   return prev?.item?.title === next?.item?.title;

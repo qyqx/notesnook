@@ -115,6 +115,7 @@ function Note(props: NoteProps) {
 
   return (
     <ListItem
+      draggable={true}
       isFocused={isOpened}
       isCompact={compact}
       isSimple={simplified}
@@ -128,6 +129,9 @@ function Note(props: NoteProps) {
             .selectedItems.filter((i) => i.type === item.type && i !== item);
           await Multiselect.moveNotesToTrash([item, ...selectedItems]);
         }
+      }}
+      onDragStart={(e) => {
+        e?.dataTransfer.setData("note-id", note.id);
       }}
       colors={{
         accent: primary,

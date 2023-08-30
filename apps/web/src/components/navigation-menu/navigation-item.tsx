@@ -37,6 +37,7 @@ type NavigationItemProps = {
   tag?: string;
   selected?: boolean;
   onClick?: () => void;
+  onDragEnter?: () => void;
   count?: number;
   animate?: boolean;
   index?: number;
@@ -58,7 +59,8 @@ function NavigationItem(props: PropsWithChildren<NavigationItemProps>) {
     menuItems,
     count,
     animate = false,
-    index = 0
+    index = 0,
+    onDragEnter
   } = props;
   const toggleSideMenu = useAppStore((store) => store.toggleSideMenu);
   const isMobile = useMobile();
@@ -117,6 +119,9 @@ function NavigationItem(props: PropsWithChildren<NavigationItemProps>) {
         onClick={() => {
           if (isMobile) toggleSideMenu(false);
           if (onClick) onClick();
+        }}
+        onDragEnter={() => {
+          if (onDragEnter) onDragEnter();
         }}
       >
         <Icon
