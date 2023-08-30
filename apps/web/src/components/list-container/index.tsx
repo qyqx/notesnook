@@ -139,6 +139,7 @@ function ListContainer(props: ListContainerProps) {
       onDragOver={(e) => e.preventDefault()}
       onDrop={async (e) => {
         const noteId = e?.dataTransfer.getData("note-id");
+        if (!noteId) return;
         if (groupingKey === "favorites") {
           await favorite(noteId);
         } else if (groupingKey === "trash") {

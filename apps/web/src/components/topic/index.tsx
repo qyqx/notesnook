@@ -53,6 +53,7 @@ function Topic(props: TopicProps) {
       }}
       onDrop={async (e) => {
         const noteId = e?.dataTransfer.getData("note-id");
+        if (!noteId) return;
         await db.notes?.addToNotebook(
           { id: topic.notebookId as string, topic: topic.id },
           noteId
