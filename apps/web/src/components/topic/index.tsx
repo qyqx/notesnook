@@ -52,7 +52,6 @@ function Topic(props: TopicProps) {
         e?.currentTarget.focus();
       }}
       onDrop={async (e) => {
-        console.log("topic", topic);
         const noteId = e?.dataTransfer.getData("note-id");
         await db.notes?.addToNotebook(
           { id: topic.notebookId as string, topic: topic.id },
