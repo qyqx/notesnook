@@ -40,6 +40,8 @@ export class ClipboardDOMParser extends ProsemirrorDOMParser {
     if (dom instanceof HTMLElement) {
       formatCodeblocks(dom);
       convertBrToSingleSpacedParagraphs(dom);
+      pasteFromGoogleSheets(dom);
+      removeDoubleParagraphs(dom);
     }
     return super.parseSlice(dom, options);
   }
@@ -92,6 +94,31 @@ export function convertBrToSingleSpacedParagraphs(dom: HTMLElement | Document) {
       newParagraph.append(...children.slice(children.indexOf(br) + 1));
       paragraph.insertAdjacentElement("afterend", newParagraph);
       br.remove();
+    }
+  }
+}
+
+export function pasteFromGoogleSheets(dom: HTMLElement | Document) {
+  for (const li of dom.querySelectorAll("li")) {
+    if (li.role === "checkbox") {
+      li.closest("ul")?.classList.add("checklist");
+      li.classList.add("checklist--item");
+      li.querySelector("img")?.remove();
+      if (li.getAttribute("aria-checked") === "true") {
+        li.classList.add("checked");
+      }
+    }
+  }
+}
+
+export function removeDoubleParagraphs(dom: HTMLElement | Document) {
+  for (const p of dom.querySelectorAll("p")) {
+    if (p.querySelector("p")) {
+      p.outerHTML = p.innerHTML;
+    }
+
+    if (p.querySelector("ul")) {
+      if (p.parentNode) p.outerHTML = p.innerHTML;
     }
   }
 }
