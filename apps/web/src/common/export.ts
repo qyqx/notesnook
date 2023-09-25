@@ -100,6 +100,8 @@ export async function exportNotes(
           ? await db.vault?.decryptContent(rawContent)
           : rawContent;
 
+        removeSpans(content);
+
         const exported = await note
           .export(format === "pdf" ? "html" : format, content)
           .catch((e: Error) => {
@@ -137,3 +139,15 @@ export async function exportNotes(
     }
   });
 }
+
+const removeSpans = (content: any) => {
+  const dom = document.createElement("div");
+  dom.innerHTML = content.data;
+  const spans = dom.getElementsByTagName("span");
+  const counter = spans.length - 1;
+  for (let i = counter; i >= 0; i--) {
+    spans[i].outerHTML = spans[i].innerHTML;
+  }
+  content.data = dom.innerHTML;
+  dom.innerHTML = "";
+};
