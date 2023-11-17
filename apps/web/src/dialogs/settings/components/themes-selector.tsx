@@ -168,7 +168,7 @@ function ThemesList() {
           <Button
             variant="secondary"
             onClick={async () => {
-              const file = await showFilePicker({
+              const [file] = await showFilePicker({
                 acceptedFileTypes: "application/json"
               });
               if (!file) return;
