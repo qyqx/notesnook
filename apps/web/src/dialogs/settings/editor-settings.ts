@@ -111,6 +111,20 @@ symbols (e.g. 202305261253)`,
               useSettingStore.getState().toggleDoubleSpacedParagraphs()
           }
         ]
+      },
+      {
+        key: "enable-markdown",
+        title: "Enable Markdown",
+        description: "Enable markdown in the editor.",
+        onStateChange: (listener) =>
+          useSettingStore.subscribe((c) => c.doubleSpacedParagraphs, listener),
+        components: [
+          {
+            type: "toggle",
+            isToggled: () => useSettingStore.getState().enableInputRules,
+            toggle: () => useSettingStore.getState().toggleInputRules()
+          }
+        ]
       }
     ]
   },

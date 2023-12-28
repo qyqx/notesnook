@@ -38,6 +38,7 @@ class SettingStore extends BaseStore {
     PATHS.backupsDirectory
   );
   doubleSpacedParagraphs = Config.get("doubleSpacedLines", true);
+  enableInputRules = Config.get("enable-input-rules", true);
   notificationsSettings = Config.get("notifications", { reminder: true });
 
   zoomFactor = 1.0;
@@ -154,6 +155,14 @@ class SettingStore extends BaseStore {
       (state) => (state.doubleSpacedParagraphs = !doubleSpacedParagraphs)
     );
     Config.set("doubleSpacedLines", !doubleSpacedParagraphs);
+  };
+
+  toggleInputRules = (toggleState) => {
+    this.set((state) => {
+      state.enableInputRules =
+        toggleState !== undefined ? toggleState : !state.enableInputRules;
+      Config.set("enable-input-rules", state.enableInputRules);
+    });
   };
 
   toggleTelemetry = () => {
