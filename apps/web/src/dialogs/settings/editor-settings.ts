@@ -100,7 +100,7 @@ symbols (e.g. 202305261253)`,
         key: "double-spacing",
         title: "Double spaced paragraphs",
         description:
-          "Use double spacing between paragraphs and when you press Enter in the editor.",
+          "Use double spacing between paragraphs when you press Enter in the editor.",
         onStateChange: (listener) =>
           useSettingStore.subscribe((c) => c.doubleSpacedParagraphs, listener),
         components: [
@@ -113,15 +113,23 @@ symbols (e.g. 202305261253)`,
         ]
       },
       {
-        key: "enable-markdown",
-        title: "Enable Markdown",
-        description: "Enable markdown in the editor.",
+        key: "input-rules",
+        title: "Input rules",
+        description: `Input rules are triggered whenever you input a specific character combination.
+        
+A few examples of this:
+
+1. Typing '/date' adds the current Date
+2. Wrapping something in '**' turns it into bold text
+3. Typing '1.' automatically creates a numbered list.
+
+This behavior can be disabled via this setting.`,
         onStateChange: (listener) =>
-          useSettingStore.subscribe((c) => c.doubleSpacedParagraphs, listener),
+          useSettingStore.subscribe((c) => c.inputRules, listener),
         components: [
           {
             type: "toggle",
-            isToggled: () => useSettingStore.getState().enableInputRules,
+            isToggled: () => useSettingStore.getState().inputRules,
             toggle: () => useSettingStore.getState().toggleInputRules()
           }
         ]

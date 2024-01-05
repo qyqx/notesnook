@@ -138,7 +138,7 @@ function TipTap(props: TipTapProps) {
   );
   const dateFormat = useSettingsStore((store) => store.dateFormat);
   const timeFormat = useSettingsStore((store) => store.timeFormat);
-  const enableInputRules = useSettingsStore((store) => store.enableInputRules);
+  const inputRules = useSettingsStore((store) => store.inputRules);
   const { toolbarConfig } = useToolbarConfig();
   const { isSearching, toggleSearch } = useSearch();
 
@@ -178,7 +178,7 @@ function TipTap(props: TipTapProps) {
           }
         }
       },
-      enableInputRules,
+      enableInputRules: inputRules,
       downloadOptions,
       doubleSpacedLines,
       dateFormat,
@@ -286,14 +286,7 @@ function TipTap(props: TipTapProps) {
         return true;
       }
     };
-  }, [
-    readonly,
-    nonce,
-    doubleSpacedLines,
-    dateFormat,
-    timeFormat,
-    enableInputRules
-  ]);
+  }, [readonly, nonce, doubleSpacedLines, dateFormat, timeFormat, inputRules]);
 
   const editor = useTiptap(
     tiptapOptions,

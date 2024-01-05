@@ -79,7 +79,6 @@ import Clipboard, { ClipboardOptions } from "./extensions/clipboard";
 import Blockquote from "./extensions/blockquote";
 import { Quirks } from "./extensions/quirks";
 import { LIST_NODE_TYPES } from "./utils/node-types";
-import { config } from "./utils/config";
 
 declare global {
   // eslint-disable-next-line no-var
@@ -147,7 +146,6 @@ const useTiptap = (
 
   const defaultOptions = useMemo<Partial<EditorOptions>>(
     () => ({
-      enableInputRules: config.get("enable-input-rules", true),
       enableCoreExtensions: false,
       editorProps: {
         ...editorProps
