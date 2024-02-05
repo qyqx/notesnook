@@ -28,7 +28,7 @@ import { openLinkInBrowser } from "../../utils/functions";
 import { SIZE } from "../../utils/size";
 import DialogHeader from "../dialog/dialog-header";
 import SheetProvider from "../sheet-provider";
-import { PressableButton } from "../ui/pressable";
+import { Pressable } from "../ui/pressable";
 import Seperator from "../ui/seperator";
 import Paragraph from "../ui/typography/paragraph";
 import NotePreview from "./preview";
@@ -76,10 +76,10 @@ export default function NoteHistory({ note, fwdRef }) {
 
   const renderItem = useCallback(
     ({ item }) => (
-      <PressableButton
-        type="grayBg"
+      <Pressable
+        type="secondary"
         onPress={() => preview(item)}
-        customStyle={{
+        style={{
           justifyContent: "space-between",
           alignItems: "center",
           paddingHorizontal: 12,
@@ -92,7 +92,7 @@ export default function NoteHistory({ note, fwdRef }) {
         <Paragraph color={colors.secondary.paragraph} size={SIZE.xs}>
           {getTimeAgo(item.dateModified)}
         </Paragraph>
-      </PressableButton>
+      </Pressable>
     ),
     [colors.secondary.paragraph, preview]
   );

@@ -54,7 +54,7 @@ export const Tags = ({ item, close }) => {
           text: colors.primary.accent
         }}
         title="Add tags"
-        type="grayBg"
+        type="secondary"
         icon="plus"
         iconPosition="right"
         height={30}
@@ -106,7 +106,7 @@ const TagItem = ({ tag, close }) => {
     <Button
       onPress={onPress}
       title={"#" + tag}
-      type="grayBg"
+      type="secondary"
       height={20}
       fontSize={SIZE.xs}
       style={style}

@@ -32,7 +32,7 @@ import { useRelationStore } from "../../stores/use-relation-store";
 import { useSettingStore } from "../../stores/use-setting-store";
 import { refreshNotesPage } from "../../utils/events";
 import { SIZE } from "../../utils/size";
-import { PressableButton } from "../ui/pressable";
+import { Pressable } from "../ui/pressable";
 
 export const ColorTags = ({ item }: { item: Note }) => {
   const { colors } = useThemeColors();
@@ -71,14 +71,14 @@ export const ColorTags = ({ item }: { item: Note }) => {
     }, [color]);
 
     return (
-      <PressableButton
+      <Pressable
         type="accent"
         accentColor={color}
         accentText={colors.static.white}
         testID={notesnook.ids.dialogs.actionsheet.color(name)}
         key={color}
         onPress={() => changeColor(name)}
-        customStyle={{
+        style={{
           width: 30,
           height: 30,
           borderRadius: 100,
@@ -90,7 +90,7 @@ export const ColorTags = ({ item }: { item: Note }) => {
         {colorInfo?.linked ? (
           <Icon testID="icon-check" name="check" color="white" size={SIZE.lg} />
         ) : null}
-      </PressableButton>
+      </Pressable>
     );
   };
 

@@ -23,7 +23,7 @@ import Animated, { FadeInDown, FadeOutUp } from "react-native-reanimated";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { AuthMode } from "../../components/auth";
 import { Button } from "../../components/ui/button";
-import { PressableButton } from "../../components/ui/pressable";
+import { Pressable } from "../../components/ui/pressable";
 import Seperator from "../../components/ui/seperator";
 import Heading from "../../components/ui/typography/heading";
 import Paragraph from "../../components/ui/typography/paragraph";
@@ -203,9 +203,9 @@ const AppLock = ({ route }) => {
             }}
           >
             {modes.map((item) => (
-              <PressableButton
+              <Pressable
                 key={item.title}
-                type={appLockMode === item.value ? "grayBg" : "transparent"}
+                type={appLockMode === item.value ? "secondary" : "transparent"}
                 onPress={async () => {
                   if (
                     !(await BiometicService.isBiometryAvailable()) &&
@@ -222,7 +222,7 @@ const AppLock = ({ route }) => {
                   }
                   SettingsService.set({ appLockMode: item.value });
                 }}
-                customStyle={{
+                style={{
                   justifyContent: "flex-start",
                   alignItems: "flex-start",
                   paddingHorizontal: 12,
@@ -234,9 +234,6 @@ const AppLock = ({ route }) => {
                     appLockMode === item.value
                       ? item.activeColor
                       : colors.secondary.background
-                }}
-                style={{
-                  marginBottom: 10
                 }}
               >
                 <Heading
@@ -261,7 +258,7 @@ const AppLock = ({ route }) => {
                 >
                   {item.desc}
                 </Paragraph>
-              </PressableButton>
+              </Pressable>
             ))}
 
             {welcome && (

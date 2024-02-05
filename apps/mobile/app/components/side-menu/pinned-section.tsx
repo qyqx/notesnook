@@ -33,7 +33,7 @@ import { SIZE, normalize } from "../../utils/size";
 import { Properties } from "../properties";
 import { Button } from "../ui/button";
 import { Notice } from "../ui/notice";
-import { PressableButton } from "../ui/pressable";
+import { Pressable } from "../ui/pressable";
 import Seperator from "../ui/seperator";
 import SheetWrapper from "../ui/sheet";
 import Heading from "../ui/typography/heading";
@@ -143,20 +143,20 @@ export const PinItem = React.memo(
               }}
               fontSize={SIZE.md}
               width="95%"
-              customStyle={{
+              style={{
                 marginBottom: 30
               }}
             />
           </SheetWrapper>
         )}
-        <PressableButton
-          type={isFocused ? "selected" : "gray"}
+        <Pressable
+          type={isFocused ? "selected" : "plain"}
           onLongPress={() => {
             if (isPlaceholder) return;
             Properties.present(item);
           }}
           onPress={() => onPress(item)}
-          customStyle={{
+          style={{
             width: "100%",
             alignSelf: "center",
             borderRadius: 5,
@@ -228,7 +228,7 @@ export const PinItem = React.memo(
               )}
             </View>
           </View>
-        </PressableButton>
+        </Pressable>
       </>
     );
   },

@@ -33,7 +33,7 @@ import { Dialog } from "../../dialog";
 import DialogHeader from "../../dialog/dialog-header";
 import { Button } from "../../ui/button";
 import { IconButton } from "../../ui/icon-button";
-import { PressableButton } from "../../ui/pressable";
+import { Pressable } from "../../ui/pressable";
 import Seperator from "../../ui/seperator";
 import Paragraph from "../../ui/typography/paragraph";
 import { useDBItem } from "../../../hooks/use-db-item";
@@ -172,14 +172,14 @@ const SelectableNoteItem = ({
   const [item] = useDBItem(id, "note", items);
 
   return !item || exists(item.id) ? null : (
-    <PressableButton
+    <Pressable
       testID="listitem.select"
       onPress={() => {
         if (!item) return;
         select(item?.id);
       }}
       type={"transparent"}
-      customStyle={{
+      style={{
         paddingVertical: 12,
         flexDirection: "row",
         width: "100%",
@@ -188,7 +188,7 @@ const SelectableNoteItem = ({
       }}
     >
       <IconButton
-        customStyle={{
+        style={{
           backgroundColor: "transparent",
           marginRight: 5
         }}
@@ -223,7 +223,7 @@ const SelectableNoteItem = ({
           </Paragraph>
         ) : null}
       </View>
-    </PressableButton>
+    </Pressable>
   );
 };
 

@@ -63,7 +63,7 @@ export const RightMenus = ({
           testID="icon-search"
           name="magnify"
           color={colors.primary.paragraph}
-          customStyle={styles.rightBtn}
+          style={styles.rightBtn}
         />
       ) : null}
 
@@ -110,7 +110,7 @@ export const RightMenus = ({
               }}
               name="dots-vertical"
               color={colors.primary.paragraph}
-              customStyle={styles.rightBtn}
+              style={styles.rightBtn}
             />
           }
         >
@@ -121,7 +121,7 @@ export const RightMenus = ({
                 justifyContent: "flex-start",
                 borderRadius: 0
               }}
-              type="gray"
+              type="plain"
               buttonType={{
                 text: contextMenuColors.primary.paragraph
               }}

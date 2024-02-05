@@ -29,7 +29,7 @@ import useNavigationStore from "../../stores/use-navigation-store";
 import { useSettingStore } from "../../stores/use-setting-store";
 import { SIZE, normalize } from "../../utils/size";
 import { presentDialog } from "../dialog/functions";
-import { PressableButton } from "../ui/pressable";
+import { Pressable } from "../ui/pressable";
 import Heading from "../ui/typography/heading";
 import Paragraph from "../ui/typography/paragraph";
 
@@ -93,14 +93,14 @@ const ColorItem = React.memo(
     };
 
     return (
-      <PressableButton
+      <Pressable
         customColor={isFocused ? "rgba(0,0,0,0.04)" : "transparent"}
         onLongPress={onLongPress}
         customSelectedColor={item.colorCode}
         customAlpha={!isDark ? -0.02 : 0.02}
         customOpacity={0.12}
         onPress={() => onPress(item)}
-        customStyle={{
+        style={{
           width: "100%",
           alignSelf: "center",
           borderRadius: 5,
@@ -146,7 +146,7 @@ const ColorItem = React.memo(
             </Paragraph>
           )}
         </View>
-      </PressableButton>
+      </Pressable>
     );
   },
   (prev, next) => {

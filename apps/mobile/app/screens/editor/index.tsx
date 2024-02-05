@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /* eslint-disable @typescript-eslint/no-var-requires */
-import { EV, EVENTS } from "@notesnook/core/dist/common";
+import { useThemeColors } from "@notesnook/theme";
 import React, {
   forwardRef,
   useCallback,
@@ -44,7 +44,6 @@ import { EditorProps, useEditorType } from "./tiptap/types";
 import { useEditor } from "./tiptap/use-editor";
 import { useEditorEvents } from "./tiptap/use-editor-events";
 import { editorController } from "./tiptap/utils";
-import { useThemeColors } from "@notesnook/theme";
 
 const style: ViewStyle = {
   height: "100%",
@@ -190,10 +189,10 @@ const ReadonlyButton = ({ editor }: { editor: useEditorType }) => {
   return readonly && !keyboard.keyboardShown ? (
     <IconButton
       name="pencil-lock"
-      type="grayBg"
+      type="secondary"
       onPress={onPress}
       color={colors.primary.accent}
-      customStyle={{
+      style={{
         position: "absolute",
         bottom: 60,
         width: 60,

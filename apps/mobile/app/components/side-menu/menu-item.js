@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 import { useThemeColors } from "@notesnook/theme";
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import { View } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import ToggleSwitch from "toggle-switch-react-native";
@@ -26,7 +26,7 @@ import Navigation from "../../services/navigation";
 import useNavigationStore from "../../stores/use-navigation-store";
 import { SIZE, normalize } from "../../utils/size";
 import { Button } from "../ui/button";
-import { PressableButton } from "../ui/pressable";
+import { Pressable } from "../ui/pressable";
 import Heading from "../ui/typography/heading";
 import Paragraph from "../ui/typography/paragraph";
 
@@ -57,12 +57,12 @@ export const MenuItem = React.memo(
     };
 
     return (
-      <PressableButton
+      <Pressable
         testID={testID}
         key={item.name + index}
         onPress={_onPress}
-        type={isFocused ? "selected" : "gray"}
-        customStyle={{
+        type={isFocused ? "selected" : "plain"}
+        style={{
           width: "100%",
           alignSelf: "center",
           borderRadius: 5,
@@ -146,7 +146,7 @@ export const MenuItem = React.memo(
             onPress={rightBtn.func}
           />
         ) : null}
-      </PressableButton>
+      </Pressable>
     );
   },
   (prev, next) => {

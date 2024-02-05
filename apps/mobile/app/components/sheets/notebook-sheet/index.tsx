@@ -47,7 +47,7 @@ import { findRootNotebookId } from "../../../utils/notebooks";
 import { SIZE, normalize } from "../../../utils/size";
 import { Properties } from "../../properties";
 import { IconButton } from "../../ui/icon-button";
-import { PressableButton } from "../../ui/pressable";
+import { Pressable } from "../../ui/pressable";
 import Paragraph from "../../ui/typography/paragraph";
 import { AddNotebookSheet } from "../add-notebook";
 import Sort from "../sort";
@@ -254,11 +254,11 @@ export const NotebookSheet = () => {
           marginTop: -80
         }}
       >
-        <PressableButton
+        <Pressable
           testID={notesnook.buttons.add}
           type="accent"
           onPress={openEditor}
-          customStyle={{
+          style={{
             borderRadius: 100
           }}
         >
@@ -272,7 +272,7 @@ export const NotebookSheet = () => {
           >
             <Icon name="plus" color="white" size={SIZE.xxl} />
           </View>
-        </PressableButton>
+        </Pressable>
       </View>
       <View
         style={{
@@ -300,7 +300,7 @@ export const NotebookSheet = () => {
             {enabled ? (
               <>
                 <IconButton
-                  customStyle={{
+                  style={{
                     marginLeft: 10,
                     width: 40 * fontScale,
                     height: 40 * fontScale
@@ -323,7 +323,7 @@ export const NotebookSheet = () => {
                 />
 
                 <IconButton
-                  customStyle={{
+                  style={{
                     marginLeft: 10,
                     width: 40 * fontScale,
                     height: 40 * fontScale
@@ -356,7 +356,7 @@ export const NotebookSheet = () => {
                   testID="group-topic-button"
                   color={colors.primary.icon}
                   size={22}
-                  customStyle={{
+                  style={{
                     width: 40 * fontScale,
                     height: 40 * fontScale
                   }}
@@ -367,7 +367,7 @@ export const NotebookSheet = () => {
                   testID="add-notebook-button"
                   color={colors.primary.icon}
                   size={22}
-                  customStyle={{
+                  style={{
                     width: 40 * fontScale,
                     height: 40 * fontScale
                   }}
@@ -386,7 +386,7 @@ export const NotebookSheet = () => {
                   }}
                   color={colors.primary.icon}
                   size={22}
-                  customStyle={{
+                  style={{
                     width: 40 * fontScale,
                     height: 40 * fontScale
                   }}
@@ -471,7 +471,7 @@ const NotebookItem = ({
         width: "100%"
       }}
     >
-      <PressableButton
+      <Pressable
         type={isSelected || isFocused ? "selected" : "transparent"}
         onLongPress={() => {
           if (selection.enabled || !item) return;
@@ -487,7 +487,7 @@ const NotebookItem = ({
           }
           NotebookScreen.navigate(item, true);
         }}
-        customStyle={{
+        style={{
           justifyContent: "space-between",
           width: "100%",
           alignItems: "center",
@@ -514,7 +514,7 @@ const NotebookItem = ({
               left={0}
               bottom={0}
               right={0}
-              customStyle={{
+              style={{
                 width: 35,
                 height: 35
               }}
@@ -537,7 +537,7 @@ const NotebookItem = ({
               left={0}
               bottom={0}
               right={0}
-              customStyle={{
+              style={{
                 width: 35,
                 height: 35,
                 marginRight: 5
@@ -574,7 +574,7 @@ const NotebookItem = ({
           ) : null}
           <IconButton
             name="dots-horizontal"
-            customStyle={{
+            style={{
               width: 40 * fontScale,
               height: 40 * fontScale
             }}
@@ -590,7 +590,7 @@ const NotebookItem = ({
             size={SIZE.xl}
           />
         </View>
-      </PressableButton>
+      </Pressable>
 
       {!expanded
         ? null
